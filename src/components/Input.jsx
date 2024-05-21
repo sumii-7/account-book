@@ -12,11 +12,17 @@ const StInput = styled.input`
   margin-top: 5px;
 `;
 
-const Input = ({ input, id, placeholder }) => {
+const Input = ({ input, id, placeholder, onChange, value }) => {
   return (
     <div>
       <label htmlFor={id}>{input}</label>
-      <StInput type="text" id={id} placeholder={placeholder} />
+      <StInput
+        type="text"
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
     </div>
   );
 };
