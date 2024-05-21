@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Input from "./components/Input";
+import Month from "./components/Month";
+import { SaveButton, StWrap, WhiteMonth, Whiteform } from "./style";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const year = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <StWrap>
+        <Whiteform>
+          <Input input="날짜" id="title" placeholder="YYYY - MM - DD" />
+          <Input input="항목" id="category" placeholder="지출 항목" />
+          <Input input="금액" id="amount" placeholder="지출 금액" />
+          <Input input="내용" id="data" placeholder="지출 내용" />
+          <SaveButton type="submit">저장</SaveButton>
+        </Whiteform>
+
+        <WhiteMonth>
+          {year.map((m, index) => (
+            <Month key={index} month={`${m}월`} />
+          ))}
+        </WhiteMonth>
+      </StWrap>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
