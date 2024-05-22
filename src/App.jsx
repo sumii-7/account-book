@@ -1,11 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "./components/Input";
 import Month from "./components/Month";
 import { v4 as uuidv4 } from "uuid";
-import { SaveButton, StWrap, Section, Whiteform } from "./style";
+import {
+  SaveButton,
+  StWrap,
+  Section,
+  Whiteform,
+  ListSection,
+  Stul,
+  Stli,
+  FirstP,
+  SecondP,
+  ListP,
+} from "./style";
 
 function App() {
+  // const year = new Array(12).fill(null);
   const year = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const [changemonth, setChangemonth] = useState(1);
+
+  const selectedmonth = (id) => {
+    setChangemonth(id);
+  };
+
+  useEffect(() => {
+    console.log(changemonth);
+  }, [changemonth]);
 
   const [accountlist, setAccountlist] = useState([
     {
@@ -126,14 +147,21 @@ function App() {
         </Whiteform>
 
         <Section>
-          {year.map((m, index) => (
-            <Month key={index} month={`${m}월`} />
-          ))}
+          {year.map((m, index) => {
+            return (
+              <Month
+                key={index}
+                month={`${index + 1}월`}
+                changemonth={changemonth}
+                onClick={() => selectedmonth(index + 1)}
+              />
+            );
+          })}
         </Section>
 
-        <Section>
+        <ListSection>
           <List list={accountlist} />
-        </Section>
+        </ListSection>
       </StWrap>
     </>
   );
@@ -141,17 +169,25 @@ function App() {
 
 export default App;
 
-const List = ({ list }) => {
+const List = ({ list, changemonth, month }) => {
   return (
-    <>
-      {list.map((item) => (
-        <ul key={item.id}>
-          <li>{item.date}</li>
-          <li>{item.item}</li>
-          <li>{item.amount}</li>
-          <li>{item.description}</li>
-        </ul>
-      ))}
-    </>
+    <Stul>
+      {list
+        // .filter((item) => {
+        //   // 1. item.date 몇월인지 찾기(split)
+        //   // 2. changemonth 1번에서 찾은 값 자릿수 맞추기
+        //   // 3. 두개가 같은지 비교하기
+        //   item.split("-", 2) === item.date.padstart(2, "0");
+        // })
+        .map((item) => (
+          <Stli key={item.id}>
+            <FirstP>{item.date}</FirstP>
+            <SecondP>
+              {item.item} - {item.description}
+            </SecondP>
+            <ListP>{item.amount} 원</ListP>
+          </Stli>
+        ))}
+    </Stul>
   );
 };
