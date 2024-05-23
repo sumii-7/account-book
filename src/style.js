@@ -92,3 +92,41 @@ export const ListP = styled.p`
   color: #61a740;
   font-weight: bold;
 `;
+
+// Detail.jsx
+export const DetailWrap = styled.div`
+  width: 950px;
+  height: 460px;
+  background-color: #ffe176;
+  border-radius: 25px;
+  margin: 30px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 30px;
+`;
+
+export const DetailSection = styled.section`
+  width: 100%;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px 20px;
+`;
+
+export const Detaildiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-size: 20px;
+`;
+
+export const Detailinput = styled.input`
+  height: 35px;
+  margin-top: 10px;
+  outline: none;
+  font-size: 18px;
+  text-indent: 5px;
+  border-radius: 7px;
+  border: 1px solid #999;
+`;
