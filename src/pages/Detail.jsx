@@ -14,6 +14,7 @@ const Detail = () => {
     setData(selectId[0]);
   }, []);
 
+  const [data, setData] = useState({});
   const ChangeInput = () => {
     const [inputs, setInput] = useState({
       date: "",
@@ -38,7 +39,7 @@ const Detail = () => {
       <DetailSection>
         <Detaildiv>
           <label for="date">날짜</label>
-          <Detailinput type="text" id="date" value={data.date} />
+          <Detailinput type="text" id="date" value={data.item} />
         </Detaildiv>
         <Detaildiv>
           <label for="item">항목</label>
