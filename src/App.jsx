@@ -175,16 +175,10 @@ const List = ({ list, changemonth, month }) => {
   return (
     <Stul>
       {list
-        .filter((item) => {
-          // 1. item.date 몇월인지 찾기(split)
-          // 2. changemonth 1번에서 찾은 값 자릿수 맞추기
-          // 3. 두개가 같은지 비교하기
-          console.log(
-            item.date.split("-")[1],
-            changemonth.toString().padStart(2, "0")
-          );
-          item.date.split("-")[1] === changemonth.toString().padStart(2, "0");
-        })
+        .filter(
+          (item) =>
+            item.date.split("-")[1] === changemonth.toString().padStart(2, "0")
+        )
         .map((item) => (
           <Stli key={item.id}>
             <FirstP>{item.date}</FirstP>
