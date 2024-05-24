@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Input from "../components/Input";
 import Month from "../components/Month";
-import fakeData from "../fakeData.json";
 import { v4 as uuidv4 } from "uuid";
 import {
   SaveButton,
@@ -18,7 +17,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-function Home() {
+function Home({ accountlist, setAccountlist }) {
   // const year = new Array(12).fill(null);
   const year = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const [changemonth, setChangemonth] = useState(1);
@@ -33,8 +32,6 @@ function Home() {
   }, []);
 
   const navigate = useNavigate();
-
-  const [accountlist, setAccountlist] = useState(fakeData);
 
   const [date, setDate] = useState("");
   const [item, setItem] = useState("");
@@ -65,8 +62,8 @@ function Home() {
           <Input
             input="날짜"
             id="title"
-            placeholder="YYYY - MM - DD"
             value={date}
+            type={"date"}
             onChange={(e) => {
               setDate(e.target.value);
             }}
@@ -76,6 +73,7 @@ function Home() {
             id="category"
             placeholder="지출 항목"
             value={item}
+            type={"text"}
             onChange={(e) => {
               setItem(e.target.value);
             }}
@@ -85,6 +83,7 @@ function Home() {
             id="amount"
             placeholder="지출 금액"
             value={amount}
+            type={"text"}
             onChange={(e) => {
               setAmount(e.target.value);
             }}
@@ -93,6 +92,7 @@ function Home() {
             input="내용"
             id="data"
             placeholder="지출 내용"
+            type={"text"}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);
@@ -142,7 +142,7 @@ const List = ({ list, changemonth, accountlist }) => {
         )
         .map((item) => (
           <Stli key={item.id}>
-            <StyledLink to={`/Detail/${item.id}`} state={{ accountlist }}>
+            <StyledLink to={`/Detail/${item.id}`}>
               <FirstP>{item.date}</FirstP>
               <SecondP>
                 {item.item} - {item.description}
