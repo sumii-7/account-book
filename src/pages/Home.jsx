@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Input from "../components/Input";
 import Month from "../components/Month";
 import { v4 as uuidv4 } from "uuid";
@@ -16,6 +16,7 @@ import {
 } from "../style";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { listcontext } from "../shared/Router";
 
 function Home({ accountlist, setAccountlist }) {
   // const year = new Array(12).fill(null);
@@ -115,12 +116,7 @@ function Home({ accountlist, setAccountlist }) {
         </Section>
 
         <ListSection>
-          <List
-            list={accountlist}
-            changemonth={changemonth}
-            navigate={navigate}
-            accountlist={accountlist}
-          />
+          <List changemonth={changemonth} />
         </ListSection>
       </StWrap>
     </>
@@ -131,26 +127,31 @@ export default Home;
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
+const List = ({ changemonth }) => {
+  const list = useContext(listcontext);
+  console.log(useContext(listcontext));
 
-const List = ({ list, changemonth, accountlist }) => {
   return (
     <Stul>
-      {list
-        .filter(
-          (item) =>
-            item.date.split("-")[1] === changemonth.toString().padStart(2, "0")
-        )
-        .map((item) => (
-          <Stli key={item.id}>
-            <StyledLink to={`/Detail/${item.id}`}>
-              <FirstP>{item.date}</FirstP>
-              <SecondP>
-                {item.item} - {item.description}
-              </SecondP>
-              <ListP>{item.amount} 원</ListP>
-            </StyledLink>
-          </Stli>
-        ))}
+      <>
+        {list
+          .filter(
+            (item) =>
+              item.date.split("-")[1] ===
+              changemonth.toString().padStart(2, "0")
+          )
+          .map((item) => (
+            <Stli key={item.id}>
+              <StyledLink to={`/Detail/${item.id}`}>
+                <FirstP>{item.date}</FirstP>
+                <SecondP>
+                  {item.item} - {item.description}
+                </SecondP>
+                <ListP>{item.amount} 원</ListP>
+              </StyledLink>
+            </Stli>
+          ))}
+      </>
     </Stul>
   );
 };
