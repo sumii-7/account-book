@@ -16,7 +16,7 @@ import {
 } from "../style";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { listcontext } from "../shared/Router";
+import { listcontext } from "../context/Context";
 
 function Home({ accountlist, setAccountlist }) {
   // const year = new Array(12).fill(null);
@@ -128,7 +128,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 const List = ({ changemonth }) => {
-  const list = useContext(listcontext);
+  const { accountlist: list } = useContext(listcontext);
   console.log(useContext(listcontext));
 
   return (

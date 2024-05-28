@@ -1,16 +1,15 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 import fakeData from "../fakeData.json";
+import { listcontext } from "../context/Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-export const listcontext = createContext(fakeData);
 
 const Router = () => {
   const [accountlist, setAccountlist] = useState(fakeData);
 
   return (
-    <listcontext.Provider value={accountlist}>
+    <listcontext.Provider value={{ accountlist }}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home setAccountlist={setAccountlist} />} />
