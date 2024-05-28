@@ -13,12 +13,7 @@ const Router = () => {
     <listcontext.Provider value={accountlist}>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home accountlist={accountlist} setAccountlist={setAccountlist} />
-            }
-          />
+          <Route path="/" element={<Home setAccountlist={setAccountlist} />} />
           <Route
             path="/Detail/:id"
             element={
