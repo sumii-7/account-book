@@ -16,7 +16,6 @@ import {
 } from "../style";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { listcontext } from "../context/Context";
 
 function Home({ accountlist, setAccountlist }) {
   // const year = new Array(12).fill(null);
@@ -116,7 +115,7 @@ function Home({ accountlist, setAccountlist }) {
         </Section>
 
         <ListSection>
-          <List changemonth={changemonth} />
+          <List changemonth={changemonth} list={accountlist} />
         </ListSection>
       </StWrap>
     </>
@@ -127,10 +126,7 @@ export default Home;
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
-const List = ({ changemonth }) => {
-  const { accountlist: list } = useContext(listcontext);
-  console.log(useContext(listcontext));
-
+const List = ({ changemonth, list }) => {
   return (
     <Stul>
       <>
