@@ -129,7 +129,6 @@ const StyledLink = styled(Link)`
 `;
 const List = ({ changemonth }) => {
   const { accountlist: list } = useContext(listcontext);
-  console.log(useContext(listcontext));
 
   return (
     <Stul>
