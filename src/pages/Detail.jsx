@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DetailSection, DetailWrap, Detaildiv, Detailinput } from "../style";
 
-const Detail = ({ accountlist, setAccountlist }) => {
+const Detail = ({ accountList, setAccountList }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const inputRef = useRef(null);
@@ -11,7 +11,7 @@ const Detail = ({ accountlist, setAccountlist }) => {
   const descriptionRef = useRef(null);
 
   function changeBtn() {
-    const newaccountlist = accountlist.map((i) => {
+    const newAccountList = accountList.map((i) => {
       if (i.id === id) {
         i.date = inputRef.current.value;
         i.item = itemRef.current.value;
@@ -20,25 +20,25 @@ const Detail = ({ accountlist, setAccountlist }) => {
       }
       return i;
     });
-    // console.log(newaccountlist);
-    setAccountlist(newaccountlist);
-    // navigate(-1);
+    // console.log(newAccountList);
+    setAccountList(newAccountList);
+    navigate(-1);
     // inputRef.current.value;
   }
 
   function deleteBtn() {
-    const deleteaccountlist = accountlist.filter((i) => i.id !== id);
+    const deleteAccountList = accountList.filter((i) => i.id !== id);
     alert("정말로 삭제하겠습니까?");
-    setAccountlist(deleteaccountlist);
+    setAccountList(deleteAccountList);
     navigate(-1);
   }
 
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const selectId = accountlist.filter((i) => i.id === id);
+    const selectId = accountList.filter((i) => i.id === id);
     setData(selectId[0]);
-  }, [accountlist]);
+  }, [accountList]);
   if (!data) return null;
 
   return (

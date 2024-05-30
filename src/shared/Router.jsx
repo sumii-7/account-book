@@ -2,29 +2,29 @@ import React, { useState } from "react";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 import fakeData from "../fakeData.json";
-import { listcontext } from "../context/Context";
+import { ListContext } from "../context/Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const Router = () => {
-  const [accountlist, setAccountlist] = useState(fakeData);
+  const [accountList, setAccountList] = useState(fakeData);
 
   return (
-    <listcontext.Provider value={{ accountlist }}>
+    <ListContext.Provider value={{ accountList }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home setAccountlist={setAccountlist} />} />
+          <Route path="/" element={<Home setAccountList={setAccountList} />} />
           <Route
             path="/Detail/:id"
             element={
               <Detail
-                accountlist={accountlist}
-                setAccountlist={setAccountlist}
+                accountList={accountList}
+                setAccountList={setAccountList}
               />
             }
           />
         </Routes>
       </BrowserRouter>
-    </listcontext.Provider>
+    </ListContext.Provider>
   );
 };
 

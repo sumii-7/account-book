@@ -14,11 +14,11 @@ import {
   SecondP,
   ListP,
 } from "../style";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { listcontext } from "../context/Context";
+import { ListContext } from "../context/Context";
 
-function Home({ accountlist, setAccountlist }) {
+function Home({ accountList, setAccountList }) {
   // const year = new Array(12).fill(null);
   const year = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const [changemonth, setChangemonth] = useState(1);
@@ -31,8 +31,6 @@ function Home({ accountlist, setAccountlist }) {
   useEffect(() => {
     setChangemonth(Number(localStorage.getItem("lastmonth")));
   }, []);
-
-  const navigate = useNavigate();
 
   const [date, setDate] = useState("");
   const [item, setItem] = useState("");
@@ -49,7 +47,7 @@ function Home({ accountlist, setAccountlist }) {
       description: description,
     };
 
-    setAccountlist([...accountlist, newList]);
+    setAccountList([...accountList, newList]);
     setDate("");
     setItem("");
     setAmount("");
@@ -128,7 +126,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 const List = ({ changemonth }) => {
-  const { accountlist: list } = useContext(listcontext);
+  const { accountList: list } = useContext(ListContext);
 
   return (
     <Stul>
