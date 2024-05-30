@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DetailSection, DetailWrap, Detaildiv, Detailinput } from "../style";
+import { ListContext } from "../context/Context";
 
-const Detail = ({ accountList, setAccountList }) => {
+const Detail = () => {
+  const { accountList, setAccountList } = useContext(ListContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const inputRef = useRef(null);

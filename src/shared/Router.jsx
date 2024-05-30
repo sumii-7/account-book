@@ -9,19 +9,11 @@ const Router = () => {
   const [accountList, setAccountList] = useState(fakeData);
 
   return (
-    <ListContext.Provider value={{ accountList }}>
+    <ListContext.Provider value={{ accountList, setAccountList }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home setAccountList={setAccountList} />} />
-          <Route
-            path="/Detail/:id"
-            element={
-              <Detail
-                accountList={accountList}
-                setAccountList={setAccountList}
-              />
-            }
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/Detail/:id" element={<Detail />} />
         </Routes>
       </BrowserRouter>
     </ListContext.Provider>

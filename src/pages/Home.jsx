@@ -18,7 +18,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ListContext } from "../context/Context";
 
-function Home({ accountList, setAccountList }) {
+function Home() {
+  const { accountList, setAccountList } = useContext(ListContext);
   // const year = new Array(12).fill(null);
   const year = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const [changemonth, setChangemonth] = useState(1);
@@ -126,12 +127,12 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 const List = ({ changemonth }) => {
-  const { accountList: list } = useContext(ListContext);
+  const { accountList } = useContext(ListContext);
 
   return (
     <Stul>
       <>
-        {list
+        {accountList
           .filter(
             (item) =>
               item.date.split("-")[1] ===
